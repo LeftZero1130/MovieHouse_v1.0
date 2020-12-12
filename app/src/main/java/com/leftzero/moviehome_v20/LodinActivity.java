@@ -1,5 +1,6 @@
 package com.leftzero.moviehome_v20;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -35,7 +36,7 @@ public class LodinActivity extends AppCompatActivity {
 
     private void LoadInfo()
     {
-        File file=new File(LodinActivity.this.getFilesDir(),"data.txt");
+        File file=new File(LodinActivity.this.getFilesDir(),"UserID.txt");
         if (!file.exists()) return;
 
         try {
@@ -47,7 +48,9 @@ public class LodinActivity extends AppCompatActivity {
             et_password.setText(arr[1]);
             checkBox.setChecked(true);
             br.close();
-
+            Intent intent = new Intent(this, DefaultHomeActivity.class);
+            this.startActivity(intent);
+            this.finish();
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,7 +70,7 @@ public class LodinActivity extends AppCompatActivity {
 
         if (checkBox.isChecked())
         {
-            File file=new File(LodinActivity.this.getFilesDir(),"data.txt");
+            File file=new File(LodinActivity.this.getFilesDir(),"UserID.txt");
             try {
 
                 OutputStream out=new FileOutputStream(file);
@@ -76,7 +79,9 @@ public class LodinActivity extends AppCompatActivity {
                 writer.write(userName+"#"+password);
                 writer.flush();
                 writer.close();
-
+                Intent intent = new Intent(this, DefaultHomeActivity.class);
+                this.startActivity(intent);
+                this.finish();
             } catch (Exception e) {
                 e.printStackTrace();
             }
